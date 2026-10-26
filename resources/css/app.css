@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+@source '../views/**/*.blade.php';
+
+/* Shared form styling keeps the PHP template short. */
+@layer base {
+    label, legend {
+        @apply mb-2 block text-sm font-semibold;
+    }
+
+    label span, legend span {
+        @apply text-red-700;
+    }
+
+    fieldset {
+        @apply my-5 min-w-0;
+    }
+
+    input:not([type='radio']):not([type='checkbox']):not([type='hidden']), select, textarea {
+        @apply block min-h-11 w-full rounded border border-gray-300 bg-white px-3 py-2.5;
+    }
+
+    input[type='radio'], input[type='checkbox'] {
+        @apply mt-1 size-4 shrink-0 accent-blue-800;
+    }
+
+    label > input:not([type='radio']):not([type='checkbox']), label > select, label > textarea {
+        @apply mt-2 font-normal;
+    }
+
+    textarea {
+        @apply resize-y;
+    }
+
+    button {
+        @apply w-full cursor-pointer rounded bg-blue-800 px-6 py-3 font-semibold text-white hover:bg-blue-900 sm:w-auto;
+    }
+
+    input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible {
+        @apply outline-2 outline-offset-2 outline-blue-500;
+    }
+}
+
+@layer components {
+    .choices {
+        @apply flex flex-col gap-2;
+    }
+
+    .choices label {
+        @apply flex items-start gap-2 font-normal;
+    }
+}
+
+/* No JavaScript or page reload needed for the KNVB choice. */
+.knvb-details {
+    display: none;
+}
+
+.knvb-choice:has(input[value='ja']:checked) .knvb-details {
+    display: block;
+}
